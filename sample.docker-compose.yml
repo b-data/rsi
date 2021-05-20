@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  rsi:
+    build:
+      context: .
+      args:
+        - IMAGE=${IMAGE}
+        - LAPACK=${LAPACK:-liblapack-dev}
+    image: rsi
+    container_name: rsi
+    network_mode: host
+    volumes:
+      - ${PREFIX}${SUBDIR}:${PREFIX}${SUBDIR}
+    environment:
+      - R_VERSION=${R_VERSION}
+      - CONFIG_ARGS=${CONFIG_ARGS}
+      - PREFIX=${PREFIX}${SUBDIR}
+      - MODE=${MODE:-install}
