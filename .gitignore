@@ -92,4 +92,6 @@ $RECYCLE.BIN/
 docker-compose.yml
 Dockerfile
 
-var/
+custom/**
+
+!.keep
