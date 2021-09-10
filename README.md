@@ -34,7 +34,7 @@ To install docker, follow the instructions for your platform:
 ### Debian Packages
 
 To cover the runtime dependencies on a **headless server**, the latest version of
-`r-base-dev` (currently 4.0.5) requires the following packages:
+`r-base-dev` (currently 4.1.1) requires the following packages:
 
 *  `build-essential`
 *  `ca-certificates`
@@ -45,10 +45,10 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `libicu-dev`
 *  `'^libjpeg.*-turbo.*-dev$'`
 *  `liblzma-dev`
+*  `${LAPACK}`
 *  `libpangocairo-1.0.0`
 *  `libpaper-utils`
 *  `'^libpcre[2|3]-dev$'`
-*  `${LAPACK}`
 *  `libpng-dev`
 *  `libreadline-dev`
 *  `libtiff5`

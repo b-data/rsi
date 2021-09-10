@@ -1,10 +1,10 @@
 ARG IMAGE
 
-FROM $IMAGE as builder
+FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG LAPACK=liblapack-dev
+ARG LAPACK=libopenblas-dev
 
 ARG R_VERSION
 ARG CONFIG_ARGS="--enable-R-shlib \
@@ -27,12 +27,12 @@ RUN apt-get update \
     libbz2-* \
     '^libcurl[3|4]$' \
     libicu* \
-    libjpeg-turbo* \
+    '^libjpeg.*-turbo.*' \
     liblzma* \
+    ${LAPACK} \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \
-    ${LAPACK} \
     libpng16* \
     libreadline-dev \
     libtiff* \
@@ -77,6 +77,13 @@ COPY scripts/*.sh /usr/bin/
 
 RUN start.sh
 
-FROM $IMAGE
+FROM ${IMAGE}
 
-COPY --from=builder /usr/local /usr/local
+LABEL org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.source="https://gitlab.com/b-data/r/rsi" \
+      org.opencontainers.image.vendor="b-data GmbH" \
+      org.opencontainers.image.authors="Olivier Benz <olivier.benz@b-data.ch>"
+
+ARG PREFIX=/usr/local
+
+COPY --from=builder ${PREFIX} ${PREFIX}
