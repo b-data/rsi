@@ -84,6 +84,9 @@ LABEL org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.vendor="b-data GmbH" \
       org.opencontainers.image.authors="Olivier Benz <olivier.benz@b-data.ch>"
 
+ARG IMAGE
 ARG PREFIX=/usr/local
+
+ENV BASE_IMAGE=${IMAGE}
 
 COPY --from=builder ${PREFIX} ${PREFIX}
