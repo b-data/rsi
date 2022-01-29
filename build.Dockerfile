@@ -16,7 +16,7 @@ ARG CONFIG_ARGS="--enable-R-shlib \
   --with-recommended-packages"
 
 ARG PREFIX=/usr/local
-ARG MODE=install
+ARG MODE=install-strip
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
