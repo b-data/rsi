@@ -23,5 +23,11 @@ cd /tmp \
     ./configure ${CONFIG_ARGS} --prefix=${PREFIX} \
   && if [[ "${MODE}" == "install" ]]; then
     make
-  fi \
-  && make ${MODE}
+    make ${MODE}
+  elif [[ "${MODE}" == "install-strip" ]]; then
+    make
+    make ${MODE}
+    echo "_R_SHLIB_STRIP_=true" >> ${PREFIX}/lib/R/etc/Renviron.site
+  else
+    make ${MODE}
+  fi
