@@ -3,7 +3,8 @@ ARG IMAGE
 FROM $IMAGE
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG LAPACK=${LAPACK}
+
+ARG BLAS=${BLAS}
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -19,7 +20,7 @@ RUN apt-get update \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \
-    ${LAPACK} \
+    ${BLAS} \
     libpng16* \
     libreadline-dev \
     libtiff* \

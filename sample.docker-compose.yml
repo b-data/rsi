@@ -6,7 +6,7 @@ services:
       context: .
       args:
         - IMAGE=${IMAGE}
-        - LAPACK=${LAPACK:-liblapack-dev}
+        - BLAS=${BLAS:-liblapack-dev}
     image: rsi
     container_name: rsi
     network_mode: host

@@ -4,7 +4,7 @@ FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG LAPACK=libopenblas-dev
+ARG BLAS=libopenblas-dev
 
 ARG R_VERSION
 ARG CONFIG_ARGS="--enable-R-shlib \
@@ -29,7 +29,7 @@ RUN apt-get update \
     libicu* \
     '^libjpeg.*-turbo.*' \
     liblzma* \
-    ${LAPACK} \
+    ${BLAS} \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \

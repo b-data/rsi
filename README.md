@@ -45,7 +45,7 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `libicu-dev`
 *  `'^libjpeg.*-turbo.*-dev$'`
 *  `liblzma-dev`
-*  `${LAPACK}`
+*  `${BLAS}`
 *  `libpangocairo-1.0.0`
 *  `libpaper-utils`
 *  `'^libpcre[2|3]-dev$'`
@@ -58,8 +58,8 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `zlib1g`
 
 These packages, as well as `tar` and `wget`, must be available on the host.
-Replace `${LAPACK}` with the \[BLAS/\]LAPACK library set in `.env` (default:
-`liblapack-dev`).
+Replace `${BLAS}` with the \[LAPACK/\]BLAS library set in `.env` (default:
+`liblapack-dev` which depends on `libblas-dev`).
 
 #### Tcl/Tk and X11 capabilities
 
