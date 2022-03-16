@@ -4,7 +4,7 @@ FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG BLAS=libopenblas-dev
+ARG BLAS=liblapack-dev
 
 ARG R_VERSION
 ARG CONFIG_ARGS="--enable-R-shlib \
