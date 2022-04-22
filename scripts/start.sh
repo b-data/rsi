@@ -9,6 +9,8 @@ cd /tmp \
     wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz \
   && tar zxf R-${R_VERSION}.tar.gz \
   && cd R-${R_VERSION} \
+  && mv /tmp/*.patch . \
+  && patch -p0 <R-4.2.0-configure.patch \
   && R_PAPERSIZE=letter \
     R_BROWSER=xdg-open \
     PAGER=/usr/bin/pager \

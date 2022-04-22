@@ -73,6 +73,7 @@ RUN apt-get update \
     zlib1g-dev" \
   && apt-get install -y --no-install-recommends $BUILDDEPS
 
+COPY patches/* /tmp/
 COPY scripts/*.sh /usr/bin/
 
 RUN start.sh
