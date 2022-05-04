@@ -10,7 +10,9 @@ cd /tmp \
   && tar zxf R-${R_VERSION}.tar.gz \
   && cd R-${R_VERSION} \
   && mv /tmp/*.patch . \
-  && patch -p0 <R-4.2.0-configure.patch \
+  && if [[ -f "${R_VERSION}.patch" ]]; then
+    patch -p0 <${R_VERSION}.patch
+  fi \
   && R_PAPERSIZE=letter \
     R_BROWSER=xdg-open \
     PAGER=/usr/bin/pager \
