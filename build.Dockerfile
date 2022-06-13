@@ -4,7 +4,7 @@ FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG LAPACK=libopenblas-dev
+ARG BLAS=liblapack-dev
 
 ARG R_VERSION
 ARG CONFIG_ARGS="--enable-R-shlib \
@@ -29,7 +29,7 @@ RUN apt-get update \
     libicu* \
     '^libjpeg.*-turbo.*' \
     liblzma* \
-    ${LAPACK} \
+    ${BLAS} \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \
@@ -73,6 +73,7 @@ RUN apt-get update \
     zlib1g-dev" \
   && apt-get install -y --no-install-recommends $BUILDDEPS
 
+COPY patches/* /tmp/
 COPY scripts/*.sh /usr/bin/
 
 RUN start.sh
