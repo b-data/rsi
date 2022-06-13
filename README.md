@@ -1,6 +1,6 @@
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/master/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://benz0li.b-data.io/donate?project=4"><img src="https://benz0li.b-data.io/donate/static/donate-with-fosspay.png" alt="Donate with fosspay"></a> <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a>
 
-# R source-install
+# R source-installation
 
 [This project](https://gitlab.com/b-data/r/rsi) is intended for system
 administrators who want to perform a source-installation of R. It is meant for
@@ -106,6 +106,9 @@ retrieving data from the previous containers_):
 ```bash
 docker-compose up --build -V
 ```
+
+Do not forget to add `PREFIX[/SUBDIR]/bin` to `PATH` when using a `PREFIX`
+within `/opt`.
 
 ## Contributing
 

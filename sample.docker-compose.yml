@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   rsi:
@@ -10,10 +10,12 @@ services:
     image: rsi
     container_name: rsi
     network_mode: host
+    userns_mode: host
     volumes:
-      - ${PREFIX}${SUBDIR}:${PREFIX}${SUBDIR}
+      - ${PREFIX:-/opt/local}/${SUBDIR}:${PREFIX:-/opt/local}/${SUBDIR}
+      - /etc:/tmp/etc
     environment:
       - R_VERSION=${R_VERSION}
       - CONFIG_ARGS=${CONFIG_ARGS}
-      - PREFIX=${PREFIX}${SUBDIR}
+      - PREFIX=${PREFIX}/${SUBDIR}
       - MODE=${MODE:-install}
