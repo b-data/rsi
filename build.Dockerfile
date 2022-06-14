@@ -1,4 +1,5 @@
 ARG IMAGE
+ARG PREFIX=/usr/local
 
 FROM ${IMAGE} as builder
 
@@ -15,7 +16,7 @@ ARG CONFIG_ARGS="--enable-R-shlib \
   --with-tcltk \
   --with-recommended-packages"
 
-ARG PREFIX=/usr/local
+ARG PREFIX
 ARG MODE=install-strip
 
 RUN apt-get update \
@@ -86,7 +87,7 @@ LABEL org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.authors="Olivier Benz <olivier.benz@b-data.ch>"
 
 ARG IMAGE
-ARG PREFIX=/usr/local
+ARG PREFIX
 
 ENV BASE_IMAGE=${IMAGE}
 
