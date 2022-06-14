@@ -22,6 +22,10 @@ mv /tmp/*.patch .
 if [[ -f "${R_VERSION}.patch" ]]; then
   patch -p0 <${R_VERSION}.patch
 fi
+# According to https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs
+if [[ "${PREFIX}" == "/usr/local" && -e /tmp/etc/staff-group-for-usr-local ]]; then
+  patch -p0 <staff-group-for-usr-local.patch
+fi
 
 # Build and install
 R_PAPERSIZE=letter \
@@ -37,22 +41,15 @@ R_PAPERSIZE=letter \
   CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
   ./configure ${CONFIG_ARGS} --prefix=${PREFIX}
 
-if [[ "${MODE}" == "install" ]]; then
+if [[ "${MODE}" =~ ^"install" ]]; then
   make
   make ${MODE}
-elif [[ "${MODE}" == "install-strip" ]]; then
-  make
-  make ${MODE}
-  echo "_R_SHLIB_STRIP_=true" >> ${PREFIX}/lib/R/etc/Renviron.site
-else
-  make ${MODE}
-fi
-
-# Post-install
-# According to https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs
-if [[ "${PREFIX}" == "/usr/local" && "${MODE}" =~ ^"install" ]]; then
-  if test -e /tmp/etc/staff-group-for-usr-local ; then
-    find /usr/local/lib/{pkgconfig,R} -type d -exec chmod 2775 {} \;
-    find /usr/local/lib/{pkgconfig,R} -type d -exec chown root:staff {} \;
+  if [[ "${MODE}" == "install-strip" ]]; then
+    echo "_R_SHLIB_STRIP_=true" >> ${PREFIX}/lib/R/etc/Renviron.site
   fi
+else
+  if [[ "${MODE}" == "uninstall" && -e ${PREFIX}/lib/R/etc/Renviron.site ]]; then
+      rm -f ${PREFIX}/lib/R/etc/Renviron.site
+  fi
+  make ${MODE}
 fi
