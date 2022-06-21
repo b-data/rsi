@@ -14,6 +14,7 @@ on Debian-based Linux distributions, e.g. Ubuntu.
 *  [Install](#install)
 *  [Usage](#usage)
 *  [Contributing](#contributing)
+*  [References](#references)
 *  [License](#license)
 
 ## Prerequisites
@@ -118,6 +119,12 @@ PRs accepted.
 This project follows the
 [Contributor Covenant](https://www.contributor-covenant.org)
 [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## References
+
+*  [Bug#982069: /usr/local/lib/R owned by group staff even if /etc/staff-group-for-usr-local not present](https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1790651.html)
+    *  [9. The Operating System — Debian Policy Manual > ... > 9.1.2. Site-specific programs](https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs)
+    *  [Filesystem Hierarchy Standard > ... > 4.9. /usr/local : Local hierarchy](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s09.html)
 
 ## License
 
