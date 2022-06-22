@@ -47,7 +47,7 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `'^libjpeg.*-turbo.*-dev$'`
 *  `liblzma-dev`
 *  `${BLAS}`
-*  `libpangocairo-1.0.0`
+*  `libpangocairo-1.0-0`
 *  `libpaper-utils`
 *  `'^libpcre[2|3]-dev$'`
 *  `libpng-dev`
