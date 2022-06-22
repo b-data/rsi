@@ -26,11 +26,11 @@ This projects requires an installation of docker and docker compose.
 To install docker, follow the instructions for your platform:
 
 *  [Install Docker Engine | Docker Documentation > Supported platforms](https://docs.docker.com/engine/install/#supported-platforms)
-*  [Post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/)
+*  [Post-installation steps for Linux | Docker Documentation](https://docs.docker.com/engine/install/linux-postinstall/)
 
 ### Docker Compose
 
-*  [Install Docker Compose](https://docs.docker.com/compose/install/)
+*  [Install Docker Compose | Docker Documentation](https://docs.docker.com/compose/install/)
 
 ### Debian Packages
 
