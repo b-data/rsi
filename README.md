@@ -122,6 +122,9 @@ This project follows the
 
 ## References
 
+*  [18326 – Compilation with gcc on aarch64 requires -fPIC for large packages](https://bugs.r-project.org/show_bug.cgi?id=18326)
+    *  [[R] Package installation on aarch64 fails for v0.3.2 · Issue #3049 · duckdb/duckdb](https://github.com/duckdb/duckdb/issues/3049)
+    *  [[R] Package installation on aarch64 fails · Issue #3213 · mlpack/mlpack](https://github.com/mlpack/mlpack/issues/3213)
 *  [Bug#982069: /usr/local/lib/R owned by group staff even if /etc/staff-group-for-usr-local not present](https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1790651.html)
     *  [9. The Operating System — Debian Policy Manual > ... > 9.1.2. Site-specific programs](https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs)
     *  [Filesystem Hierarchy Standard > ... > 4.9. /usr/local : Local hierarchy](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s09.html)
