@@ -24,7 +24,9 @@ if [[ -f "${R_VERSION}.patch" ]]; then
 fi
 # According to https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs
 if [[ "${PREFIX}" == "/usr/local" && -e /tmp/etc/staff-group-for-usr-local ]]; then
-  patch -p0 <staff-group-for-usr-local.patch
+  sed -i 's|dirmode=$|dirmode=2775|g' src/scripts/mkinstalldirs.in
+  sed -i 's|echo "mkdir -m $dirmode -p -- $\*"|echo "mkdir -m $dirmode -p $\*"|g' src/scripts/mkinstalldirs.in
+  sed -i 's|exec mkdir -m "$dirmode" -p -- "$@"|mkdir -m "$dirmode" -p "$@"\n      echo "chown root:staff $*"\n      chown root:staff "$@"|g' src/scripts/mkinstalldirs.in
 fi
 
 # Build and install
