@@ -38,7 +38,7 @@ build:version-linux-amd64:
       -f build.Dockerfile .
     - docker push $CI_APP_REPO/$R_VERSION/$IMAGE-linux-amd64
   rules:
-    - if: $CI_COMMIT_BRANCH == "master" && $CI_BUILD_PLATFORMS =~ /(linux\/amd64)/
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_BUILD_PLATFORMS =~ /(linux\/amd64)/
       changes:
         - build.Dockerfile
         - sample..env
@@ -57,7 +57,7 @@ build:version-linux-arm64v8:
       -f build.Dockerfile .
     - docker push $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
   rules:
-    - if: $CI_COMMIT_BRANCH == "master" && $CI_BUILD_PLATFORMS =~ /(linux\/arm64\/v8)/
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_BUILD_PLATFORMS =~ /(linux\/arm64\/v8)/
       changes:
         - build.Dockerfile
         - sample..env
@@ -78,7 +78,7 @@ build-manifest:version-linux-multiarch:
       fi
       docker manifest push $CI_APP_REPO/$R_VERSION/$IMAGE
   rules:
-    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
       changes:
         - build.Dockerfile
         - sample..env
