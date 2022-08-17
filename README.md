@@ -88,7 +88,7 @@ Change directory and make a copy of all `sample.` files:
 
 ```bash
 cd rsi
-git checkout master
+git checkout main
 
 for file in sample.*; do cp "$file" "${file#sample.}"; done;
 ```
