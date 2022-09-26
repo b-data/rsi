@@ -4,17 +4,17 @@
 
 [This project](https://gitlab.com/b-data/r/rsi) is intended for system
 administrators who want to perform a source-installation of R. It is meant for
-installations from
+installing
 [official releases of R source code](https://cran.r-project.org/src/base/)
-on Debian-based Linux distributions, e.g. Ubuntu.
+on Debian-based Linux distributions, e.g. Ubuntu, using a docker container.
 
 ## Table of Contents
 
 *  [Prerequisites](#prerequisites)
 *  [Install](#install)
 *  [Usage](#usage)
-*  [Contributing](#contributing)
 *  [References](#references)
+*  [Contributing](#contributing)
 *  [License](#license)
 
 ## Prerequisites
@@ -35,7 +35,7 @@ To install docker, follow the instructions for your platform:
 ### Debian Packages
 
 To cover the runtime dependencies on a **headless server**, the latest version of
-`r-base-dev` (currently 4.2.0) requires the following packages:
+`r-base-dev` (currently 4.2.1) requires the following packages:
 
 *  `build-essential`
 *  `ca-certificates`
@@ -58,9 +58,9 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `zip`
 *  `zlib1g`
 
-These packages, as well as `tar` and `wget`, must be available on the host.
-Replace `${BLAS}` with the \[LAPACK/\]BLAS library set in `.env` (default:
-`liblapack-dev` which depends on `libblas-dev`).
+These packages must be available on the host. Replace `${BLAS}` with the
+\[LAPACK/\]BLAS library set in `.env` (default: `liblapack-dev` which depends on
+`libblas-dev`).
 
 #### Tcl/Tk and X11 capabilities
 
@@ -112,14 +112,6 @@ docker-compose up --build -V
 Do not forget to add `PREFIX[/SUBDIR]/bin` to `PATH` when using a `PREFIX`
 within `/opt`.
 
-## Contributing
-
-PRs accepted.
-
-This project follows the
-[Contributor Covenant](https://www.contributor-covenant.org)
-[Code of Conduct](CODE_OF_CONDUCT.md).
-
 ## References
 
 *  [18326 – Compilation with gcc on aarch64 requires -fPIC for large packages](https://bugs.r-project.org/show_bug.cgi?id=18326)
@@ -128,6 +120,14 @@ This project follows the
 *  [Bug#982069: /usr/local/lib/R owned by group staff even if /etc/staff-group-for-usr-local not present](https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1790651.html)
     *  [9. The Operating System — Debian Policy Manual > ... > 9.1.2. Site-specific programs](https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs)
     *  [Filesystem Hierarchy Standard > ... > 4.9. /usr/local : Local hierarchy](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s09.html)
+
+## Contributing
+
+PRs accepted.
+
+This project follows the
+[Contributor Covenant](https://www.contributor-covenant.org)
+[Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
