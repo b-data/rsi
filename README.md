@@ -4,9 +4,9 @@
 
 [This project](https://gitlab.com/b-data/r/rsi) is intended for system
 administrators who want to perform a source-installation of R. It is meant for
-installations from
+installing
 [official releases of R source code](https://cran.r-project.org/src/base/)
-on Debian-based Linux distributions, e.g. Ubuntu.
+on Debian-based Linux distributions, e.g. Ubuntu, using a docker container.
 
 ## Table of Contents
 
@@ -58,9 +58,9 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `zip`
 *  `zlib1g`
 
-These packages, as well as `tar` and `wget`, must be available on the host.
-Replace `${BLAS}` with the \[LAPACK/\]BLAS library set in `.env` (default:
-`liblapack-dev` which depends on `libblas-dev`).
+These packages must be available on the host. Replace `${BLAS}` with the
+\[LAPACK/\]BLAS library set in `.env` (default: `liblapack-dev` which depends on
+`libblas-dev`).
 
 #### Tcl/Tk and X11 capabilities
 
