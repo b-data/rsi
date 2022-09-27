@@ -77,6 +77,17 @@ build-manifest:version-linux-multiarch:
           $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
       fi
       docker manifest push $CI_APP_REPO/$R_VERSION/$IMAGE
+    - |
+      if [[ ! -z "$ADD_IMAGES" ]]; then
+        for i in $ADD_IMAGES; do
+          docker manifest create $CI_APP_REPO/$R_VERSION/$i $CI_MANIFEST_LIST
+          if echo $OS_ARCH | grep "linux-arm64v8" >/dev/null ; then
+            docker manifest annotate --variant v8 $CI_APP_REPO/$R_VERSION/$i \
+              $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
+          fi
+          docker manifest push $CI_APP_REPO/$R_VERSION/$i
+        done
+      fi
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
       changes:
