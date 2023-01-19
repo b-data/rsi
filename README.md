@@ -1,9 +1,9 @@
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/master/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a>
 
-# Containerised R source-installation
+# Containerised R source installation
 
 [This project](https://gitlab.com/b-data/r/rsi) is intended for system
-administrators who want to perform a source-installation of R. It is meant for
+administrators who want to perform a source installation of R. It is meant for
 installing
 [official releases of R source code](https://cran.r-project.org/src/base/)
 on Debian-based Linux distributions, e.g. Ubuntu, using a docker container.
