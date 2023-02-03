@@ -17,5 +17,5 @@ services:
     environment:
       - R_VERSION=${R_VERSION}
       - CONFIG_ARGS=${CONFIG_ARGS}
-      - PREFIX=${PREFIX}${SUBDIR}
+      - PREFIX=${PREFIX:-/opt/local}${SUBDIR}
       - MODE=${MODE:-install}
