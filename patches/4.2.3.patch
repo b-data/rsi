@@ -1,0 +1,59 @@
+--- configure	2023-03-08 00:16:14.603120611 +0100
++++ configure.patched	2023-03-15 09:46:10.639722176 +0100
+@@ -28940,7 +28940,7 @@
+ ## However, although the gcc docs do not mention it, it seems s390/s390x
+ ## also supports and needs -fPIC
+ ## See <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1004747> for alpha.
+-    alpha*|sparc*|ppc64*|powerpc64*|s390*)
++    aarch64*|alpha*|sparc*|ppc64*|powerpc64*|s390*)
+       cpicflags="-fPIC"
+       ;;
+     *)
+@@ -28951,7 +28951,7 @@
+ fi
+ if test "${ac_cv_fc_compiler_gnu}" = yes; then
+   case "${host_cpu}" in
+-    alpha*|sparc*|ppc64*|powerpc64*|s390*)
++    aarch64*|alpha*|sparc*|ppc64*|powerpc64*|s390*)
+       fpicflags="-fPIC"
+       ;;
+     *)
+@@ -28967,7 +28967,7 @@
+ esac
+ if test "${GXX}" = yes; then
+   case "${host_cpu}" in
+-    alpha*|sparc*|ppc64*|powerpc64*|s390*)
++    aarch64*|alpha*|sparc*|ppc64*|powerpc64*|s390*)
+       cxxpicflags="-fPIC"
+       ;;
+     *)
+--- doc/html/Makefile.in	2022-03-25 00:02:02.000000000 +0100
++++ doc/html/Makefile.in.patched	2023-03-15 09:50:23.280205565 +0100
+@@ -61,7 +61,7 @@
+ 	  $(INSTALL_DATA) $${f} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ 	@for d in $(INSTDIRS); do \
+-	  cp -p -R $${d} "$(DESTDIR)$(rdocdir)/html"; \
++	  cp -R $${d} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ installdirs:
+ 	@$(MKINSTALLDIRS) "$(DESTDIR)$(rdocdir)/html"
+@@ -72,7 +72,7 @@
+ 	  $(INSTALL_DATA) $(srcdir)/$${f} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ 	@for d in $(INSTDIRS); do \
+-	  cp -p -R $(srcdir)/$${d} "$(DESTDIR)$(rdocdir)/html"; \
++	  cp -R $(srcdir)/$${d} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ install-strip: install
+ uninstall:
+@@ -80,6 +80,9 @@
+ 	@for f in $(CLEANFILES) $(INSTFILES) $(NON_SVN_INSTFILES) $(OBJECTS); do \
+ 	  rm -f "$(DESTDIR)$(rdocdir)/html/$${f}"; \
+ 	done
++	@for d in $(INSTDIRS); do \
++	  rm -rf "$(DESTDIR)$(rdocdir)/html/$${d}"; \
++	done
+ 	@rmdir "$(DESTDIR)$(rdocdir)/html" 2>/dev/null \
+ 	  || $(ECHO) "  subdir $(DESTDIR)$(subdir) not removed"
+ 
