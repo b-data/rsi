@@ -1,0 +1,30 @@
+--- doc/html/Makefile.in	2023-03-24 00:02:02.000000000 +0100
++++ doc/html/Makefile.in.patched	2023-04-21 09:22:07.540661224 +0200
+@@ -62,7 +62,7 @@
+ 	  $(INSTALL_DATA) $${f} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ 	@for d in $(INSTDIRS); do \
+-	  cp -p -R $${d} "$(DESTDIR)$(rdocdir)/html"; \
++	  cp -R $${d} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ installdirs:
+ 	@$(MKINSTALLDIRS) "$(DESTDIR)$(rdocdir)/html"
+@@ -73,7 +73,7 @@
+ 	  $(INSTALL_DATA) $(srcdir)/$${f} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ 	@for d in $(INSTDIRS); do \
+-	  cp -p -R $(srcdir)/$${d} "$(DESTDIR)$(rdocdir)/html"; \
++	  cp -R $(srcdir)/$${d} "$(DESTDIR)$(rdocdir)/html"; \
+ 	done
+ install-strip: install
+ uninstall:
+@@ -83,6 +83,9 @@
+ 	done
+ 	@for d in $(INSTDIRS); do \
+ 	  rm -rf "$(DESTDIR)$(rdocdir)/html/$${d}"; \
++	done
++	@for d in $(INSTDIRS); do \
++	  rm -rf "$(DESTDIR)$(rdocdir)/html/$${d}"; \
+ 	done
+ 	@rmdir "$(DESTDIR)$(rdocdir)/html" 2>/dev/null \
+ 	  || $(ECHO) "  subdir $(DESTDIR)$(subdir) not removed"
