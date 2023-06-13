@@ -36,13 +36,13 @@ RUN apt-get update \
     '^libpcre[2|3]*' \
     libpng16* \
     libreadline-dev \
-    libtiff* \
+    '^libtiff[5|6]$' \
     unzip \
     zip \
     zlib1g \
   && BUILDDEPS="curl \
     default-jdk \
-    libbz2-dev \
+    #libbz2-dev \
     libcairo2-dev \
     libcurl4-openssl-dev \
     libpango1.0-dev \
@@ -51,8 +51,8 @@ RUN apt-get update \
     #libpcre2-dev \
     libpng-dev \
     #libreadline-dev \
-    libtiff5-dev \
-    liblzma-dev \
+    libtiff-dev \
+    #liblzma-dev \
     libx11-dev \
     libxt-dev \
     perl \

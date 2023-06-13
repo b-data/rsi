@@ -52,7 +52,7 @@ To cover the runtime dependencies on a **headless server**, the latest version o
 *  `'^libpcre[2|3]-dev$'`
 *  `libpng-dev`
 *  `libreadline-dev`
-*  `libtiff5`
+*  `'^libtiff[5|6]$'`
 *  `pkg-config`
 *  `unzip`
 *  `zip`
