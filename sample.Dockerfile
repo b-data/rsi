@@ -17,7 +17,7 @@ RUN apt-get update \
     libicu* \
     '^libjpeg.*-turbo.*' \
     liblzma* \
-    ${BLAS} \
+    "${BLAS}" \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \
