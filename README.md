@@ -35,7 +35,7 @@ To install docker, follow the instructions for your platform:
 ### Debian Packages
 
 To cover the runtime dependencies on a **headless server**, the latest version of
-`r-base-dev` (currently 4.3.2) requires the following packages:
+`r-base-dev` (currently 4.3.3) requires the following packages:
 
 *  `build-essential`
 *  `ca-certificates`
