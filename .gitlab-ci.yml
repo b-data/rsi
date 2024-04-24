@@ -39,6 +39,12 @@ build:version-linux-amd64:
       -t $CI_APP_REPO/$R_VERSION/$IMAGE-linux-amd64
       -f build.Dockerfile .
     - docker push $CI_APP_REPO/$R_VERSION/$IMAGE-linux-amd64
+    - |
+      if [[ "$TAG_LATEST" == "true" ]]; then
+        docker tag $CI_APP_REPO/$R_VERSION/$IMAGE-linux-amd64 \
+          $CI_APP_REPO/latest/$IMAGE-linux-amd64
+        docker push $CI_APP_REPO/latest/$IMAGE-linux-amd64
+      fi
   rules:
     - if: $CI_COMMIT_BRANCH == "main" && $CI_BUILD_PLATFORMS =~ /(linux\/amd64)/
       changes:
@@ -58,6 +64,12 @@ build:version-linux-arm64v8:
       -t $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
       -f build.Dockerfile .
     - docker push $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
+    - |
+      if [[ "$TAG_LATEST" == "true" ]]; then
+        docker tag $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8 \
+          $CI_APP_REPO/latest/$IMAGE-linux-arm64v8
+        docker push $CI_APP_REPO/latest/$IMAGE-linux-arm64v8
+      fi
   rules:
     - if: $CI_COMMIT_BRANCH == "main" && $CI_BUILD_PLATFORMS =~ /(linux\/arm64\/v8)/
       changes:
@@ -80,6 +92,15 @@ build-manifest:version-linux-multiarch:
       fi
       docker manifest push $CI_APP_REPO/$R_VERSION/$IMAGE
     - |
+      if [[ "$TAG_LATEST" == "true" ]]; then
+        docker manifest create $CI_APP_REPO/latest/$IMAGE $CI_MANIFEST_LIST
+        if echo $OS_ARCH | grep "linux-arm64v8" >/dev/null ; then
+          docker manifest annotate --variant v8 $CI_APP_REPO/latest/$IMAGE \
+            $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
+        fi
+        docker manifest push $CI_APP_REPO/latest/$IMAGE
+      fi
+    - |
       if [[ ! -z "$ADD_IMAGES" ]]; then
         for i in $ADD_IMAGES; do
           docker manifest create $CI_APP_REPO/$R_VERSION/$i $CI_MANIFEST_LIST
@@ -88,6 +109,15 @@ build-manifest:version-linux-multiarch:
               $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
           fi
           docker manifest push $CI_APP_REPO/$R_VERSION/$i
+
+          if [[ "$TAG_LATEST" == "true" ]]; then
+            docker manifest create $CI_APP_REPO/latest/$i $CI_MANIFEST_LIST
+            if echo $OS_ARCH | grep "linux-arm64v8" >/dev/null ; then
+              docker manifest annotate --variant v8 $CI_APP_REPO/latest/$i \
+                $CI_APP_REPO/$R_VERSION/$IMAGE-linux-arm64v8
+            fi
+            docker manifest push $CI_APP_REPO/latest/$i
+          fi
         done
       fi
   rules:

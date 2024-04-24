@@ -5,36 +5,36 @@ FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG BLAS=liblapack-dev
+ARG BLAS
 
-ARG R_VERSION
-ARG CONFIG_ARGS="--enable-R-shlib \
-  --enable-memory-profiling \
-  --with-readline \
-  --with-blas \
-  --with-lapack \
-  --with-tcltk \
-  --with-recommended-packages"
+ARG COMPILER
+ARG COMPILER_VERSION
+ARG CXX_STDLIB
 
-ARG PREFIX
-ARG MODE=install-strip
+ENV COMPILER=${COMPILER} \
+    COMPILER_VERSION=${COMPILER_VERSION} \
+    CXX_STDLIB=${CXX_STDLIB}
 
-RUN apt-get update \
+RUN CXX_STDLIB_VERSION=${CXX_STDLIB:+$COMPILER_VERSION} \
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
-    build-essential \
+    dpkg-dev \
+    "${CXX_STDLIB:-g++}${CXX_STDLIB_VERSION:+-}${CXX_STDLIB_VERSION}${CXX_STDLIB:+-dev}" \
+    libc6-dev \
+    make \
     ca-certificates \
-    g++ \
+    "${COMPILER:-gcc}${COMPILER_VERSION:+-}${COMPILER_VERSION}" \
     gfortran \
     libbz2-* \
     '^libcurl[3|4]$' \
     libicu* \
     '^libjpeg.*-turbo.*' \
     liblzma* \
-    "${BLAS}" \
+    "${BLAS:-liblapack-dev}" \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \
-    libpng16* \
+    libpng-dev \
     libreadline-dev \
     '^libtiff[5|6]$' \
     unzip \
@@ -49,7 +49,7 @@ RUN apt-get update \
     libjpeg-dev \
     libicu-dev \
     #libpcre2-dev \
-    libpng-dev \
+    #libpng-dev \
     #libreadline-dev \
     libtiff-dev \
     #liblzma-dev \
@@ -72,10 +72,22 @@ RUN apt-get update \
     xvfb \
     wget \
     zlib1g-dev" \
-  && apt-get install -y --no-install-recommends $BUILDDEPS
+  && apt-get install -y --no-install-recommends ${BUILDDEPS}
 
 COPY patches/* /tmp/
 COPY scripts/*.sh /usr/bin/
+
+ARG R_VERSION
+ARG CONFIG_ARGS="--enable-R-shlib \
+  --enable-memory-profiling \
+  --with-readline \
+  --with-blas \
+  --with-lapack \
+  --with-tcltk \
+  --with-recommended-packages"
+
+ARG PREFIX
+ARG MODE=install-strip
 
 RUN start.sh
 

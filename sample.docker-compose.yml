@@ -6,7 +6,10 @@ services:
       context: .
       args:
         - IMAGE=${IMAGE}
-        - BLAS=${BLAS:-liblapack-dev}
+        - BLAS=${BLAS}
+        - COMPILER=${COMPILER}
+        - COMPILER_VERSION=${COMPILER_VERSION}
+        - CXX_STDLIB=${CXX_STDLIB}
     image: rsi
     container_name: rsi
     network_mode: host
