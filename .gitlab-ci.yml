@@ -10,7 +10,7 @@
     --password-stdin $CI_REGISTRY
   - |
     if [[ -z "$R_VERSION" ]]; then
-      export R_VERSION=`sed -n "s|R_VERSION=\(.*\)|\1|p" sample..env`
+      export R_VERSION=`sed -n "s|^R_VERSION=\(.*\)|\1|p" sample..env`
     fi
 
 .build:
