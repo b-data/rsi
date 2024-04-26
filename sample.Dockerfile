@@ -1,45 +1,57 @@
 ARG IMAGE
 
-FROM $IMAGE
+FROM ${IMAGE}
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG BLAS=${BLAS}
+ARG BLAS
 
-RUN apt-get update \
+ARG COMPILER
+ARG COMPILER_VERSION
+ARG CXX_STDLIB
+
+ENV COMPILER=${COMPILER} \
+    COMPILER_VERSION=${COMPILER_VERSION} \
+    CXX_STDLIB=${CXX_STDLIB}
+
+RUN CXX_STDLIB_VERSION=${CXX_STDLIB:+$COMPILER_VERSION} \
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
-    build-essential \
+    dpkg-dev \
+    "${CXX_STDLIB:-g++}${CXX_STDLIB_VERSION:+-}${CXX_STDLIB_VERSION}${CXX_STDLIB:+-dev}" \
+    libc6-dev \
+    make \
     ca-certificates \
-    g++ \
+    "${COMPILER:-gcc}${COMPILER_VERSION:+-}${COMPILER_VERSION}" \
     gfortran \
     libbz2-* \
     '^libcurl[3|4]$' \
     libicu* \
-    libjpeg-turbo* \
+    '^libjpeg.*-turbo.*' \
     liblzma* \
+    "${BLAS:-liblapack-dev}" \
     libpangocairo-* \
     libpaper-utils \
     '^libpcre[2|3]*' \
-    ${BLAS} \
-    libpng16* \
+    libpng-dev \
     libreadline-dev \
-    libtiff* \
+    '^libtiff[5|6]$' \
     unzip \
     zip \
     zlib1g \
   && BUILDDEPS="curl \
     default-jdk \
-    libbz2-dev \
+    #libbz2-dev \
     libcairo2-dev \
     libcurl4-openssl-dev \
     libpango1.0-dev \
     libjpeg-dev \
     libicu-dev \
     #libpcre2-dev \
-    libpng-dev \
+    #libpng-dev \
     #libreadline-dev \
-    libtiff5-dev \
-    liblzma-dev \
+    libtiff-dev \
+    #liblzma-dev \
     libx11-dev \
     libxt-dev \
     perl \
@@ -59,7 +71,7 @@ RUN apt-get update \
     xvfb \
     wget \
     zlib1g-dev" \
-  && apt-get install -y --no-install-recommends $BUILDDEPS
+  && apt-get install -y --no-install-recommends ${BUILDDEPS}
 
 COPY patches/* /tmp/
 COPY scripts/*.sh /usr/bin/
