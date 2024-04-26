@@ -47,6 +47,7 @@ To cover the runtime dependencies on a **headless server**, the latest version o
     "${CXX_STDLIB}${CXX_STDLIB:+abi}${CXX_STDLIB_VERSION:+-}${CXX_STDLIB_VERSION}${CXX_STDLIB:+-dev}"
     libbz2-dev
     '^libcurl[3|4]$'
+    libdeflate-dev
     libicu-dev
     '^libjpeg.*-turbo.*-dev$'
     liblzma-dev
