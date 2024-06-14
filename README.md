@@ -35,7 +35,7 @@ To install docker, follow the instructions for your platform:
 ### Debian Packages
 
 To cover the runtime dependencies on a **headless server**, the latest version of
-`r-base-dev` (currently 4.4.0) requires the following packages:
+`r-base-dev` (currently 4.4.1) requires the following packages:
 
     dpkg-dev
     "${CXX_STDLIB:-g++}${CXX_STDLIB_VERSION:+-}${CXX_STDLIB_VERSION}${CXX_STDLIB:+-dev}"
@@ -72,8 +72,8 @@ These packages must be available on the host. Therefore, set
 
 #### Tcl/Tk and X11 capabilities
 
-Install the following package dependencies for `r-base-dev` to gain Tcl/Tk and
-X11 capabilities at runtime:
+Install the following package dependencies for `r-base-dev` to gain full Tcl/Tk
+and X11 capabilities at runtime:
 
     libtcl8.6
     libtk8.6
