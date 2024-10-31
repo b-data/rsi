@@ -36,7 +36,7 @@ To install docker, follow the instructions for your platform:
 ### Debian Packages
 
 To cover the runtime dependencies on a **headless server**, the latest version of
-`r-base-dev` (currently 4.4.1) requires the following packages:
+`r-base-dev` (currently 4.4.2) requires the following packages:
 
     dpkg-dev
     "${CXX_STDLIB:-g++}${CXX_STDLIB_VERSION:+-}${CXX_STDLIB_VERSION}${CXX_STDLIB:+-dev}"
