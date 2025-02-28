@@ -36,7 +36,7 @@ To install docker, follow the instructions for your platform:
 ### Debian Packages
 
 To cover the runtime dependencies on a **headless server**, the latest version of
-`r-base-dev` (currently 4.4.1) requires the following packages:
+`r-base-dev` (currently 4.4.3) requires the following packages:
 
     dpkg-dev
     "${CXX_STDLIB:-g++}${CXX_STDLIB_VERSION:+-}${CXX_STDLIB_VERSION}${CXX_STDLIB:+-dev}"
@@ -140,7 +140,7 @@ This project follows the
 
 ## Support
 
-Community support: Open a new disussion
+Community support: Open a new discussion
 [here](https://github.com/orgs/b-data/discussions).
 
 Commercial support: Contact b-data by [email](mailto:support@b-data.ch).
