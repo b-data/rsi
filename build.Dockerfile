@@ -1,7 +1,7 @@
 ARG IMAGE
 ARG PREFIX=/usr/local
 
-FROM ${IMAGE} as builder
+FROM ${IMAGE} AS builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
