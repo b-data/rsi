@@ -61,7 +61,7 @@ if echo "$MODE" | grep -q ^"install"; then
   make
   make "$MODE"
   if [ "$MODE" == "install-strip" ]; then
-    echo "_R_SHLIB_STRIP_=true" >> "$PREFIX/lib/R/etc/Renviron.site"
+    echo "_R_SHLIB_STRIP_='true'" >> "$PREFIX/lib/R/etc/Renviron.site"
   fi
 else
   if [ "$MODE" == "uninstall" ] && [ -e "$PREFIX/lib/R/etc/Renviron.site" ]; then
